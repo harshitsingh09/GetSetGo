@@ -5,7 +5,7 @@ import cv2
 # load the image, convert it to grayscale, and blur it
 image = cv2.imread("traf.jpeg")
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-gray = cv2.GaussianBlur(gray, (3, 3), 0)
+gray = cv2.GaussianBlur(gray,(3,3),0)
 ret,gray = cv2.threshold(gray,127,255,cv2.THRESH_BINARY)
 cv2.imshow("Gray", gray)
 cv2.waitKey(0)
@@ -31,15 +31,16 @@ total = 0
 for c in cnts:
 	# approximate the contour
 	peri = cv2.arcLength(c, True)
-	approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+	approx = cv2.approxPolyDP(c, 0.04 * peri, True)
 
 	# if the approximated contour has four points, then assume that the
 	# contour is a book -- a book is a rectangle and thus has four vertices
-	if len(approx) > 4:
-		cv2.drawContours(image, [approx], -1, (0, 255, 0), 4)
+	if len(approx) > 4 and len(approx) < 14:
+		cv2.drawContours(image, [approx], -1, (0, 0, 255), 1)
 		total += 1
 
 # display the output
 print ("I found {0} books in that image".format(total))
+image = cv2.resize(image,(1080,720), interpolation=cv2.INTER_AREA)
 cv2.imshow("Output", image)
 cv2.waitKey(0)
