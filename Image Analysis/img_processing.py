@@ -3,10 +3,7 @@ from random import randint
 import cv2 as cv
 import numpy as np
 
-vid=cv.VideoCapture(0)
-vid.set(3,1080)
-vid.set(4,1920)
-vid.set(6,1)
+vid=cv.VideoCapture("tf.mp4")
 i=0
 while True:
     ret, frame=vid.read()
@@ -25,13 +22,15 @@ while True:
         for c in cont:
             peri=cv.arcLength(c,True)
             approx=cv.approxPolyDP(c,peri*0.02,True)
-            print(peri)
+            print(total)
             if len(approx)==4:
+                cv.drawContours(frame,[approx],-1,(0,255,0),3)
+                cv.imwrite("im_test/"+str(i)+".png",frame)
                 total+=1
         cv.imshow('test',frame)
-        #cv.imwrite("im_test/"+str(i)+".png",new_img)
     if cv.waitKey(1)==ord('q'):
       break
+
     
 vid.release()
 cv.destroyAllWindows()
