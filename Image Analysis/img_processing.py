@@ -24,13 +24,12 @@ while True:
         total=0
         for c in cont:
             peri=cv.arcLength(c,True)
-            approx=cv.approxPolyDP(new_img,peri*0.02,True)
+            approx=cv.approxPolyDP(c,peri*0.02,True)
             print(peri)
-            if approx==4:
+            if len(approx)==4:
                 total+=1
-        cv.imshow(str(total)+'',frame)
-                
-        cv.imwrite("im_test/"+str(i)+".png",new_img)
+        cv.imshow('test',frame)
+        #cv.imwrite("im_test/"+str(i)+".png",new_img)
     if cv.waitKey(1)==ord('q'):
       break
     
