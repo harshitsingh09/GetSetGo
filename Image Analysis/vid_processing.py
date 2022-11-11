@@ -16,10 +16,11 @@ while True:
     i+=1
     ret, frame=vid.read()
     ret, frame2=vid.read()
+    frame=cv2.resize(frame,(240,320))
+    frame2=cv2.resize(frame2,(240,320))
     new_img=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
     new_img2=cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
-    new_img=cv2.absdiff(new_img,new_img2)
-    diff_image = cv2.absdiff(grayB, grayA)
+    diff_image=cv2.absdiff(new_img,new_img2)
     
     # image thresholding
     ret, thresh = cv2.threshold(diff_image, 30, 255, cv2.THRESH_BINARY)
