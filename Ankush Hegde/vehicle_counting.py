@@ -4,7 +4,7 @@ from vehicle_detector import VehicleDetector
 
 # Load Veichle Detector
 vd = VehicleDetector()
-img = cv.imread(r'C:\Users\Ankush Hegde\Desktop\GetSetGo\Ankush Hegde\traffic-car-vehicle-way-wallpaper-preview.jpg')
+img = cv.imread(r'C:\Users\Ankush Hegde\Desktop\GetSetGo\Ankush Hegde\road-city-busy-motorbike.jpg')
 
 box = vd.detect_vehicles(img)
 count = len(box)
