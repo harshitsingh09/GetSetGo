@@ -1,5 +1,3 @@
-# TechVidvan Vehicle counting and Classification
-
 # Import necessary packages
 
 import time
